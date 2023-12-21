@@ -10,9 +10,9 @@ public class Repeler_Spt : MonoBehaviour {
         if (!collider.CompareTag("Untagged")) {
             Vector3 direction = this.transform.position - collider.transform.position;
             float currentDistance = direction.magnitude;
-            this.rb.velocity += (1.0f / (Random.Range(-0.5f, 0.5f) + currentDistance * currentDistance) *
+            this.rb.velocity += (this.force / (Random.Range(-0.5f, 0.5f) + currentDistance * currentDistance) *
                                 ((Vector3.forward * Random.Range(-0.1f, 0.1f) + Vector3.right *
-                                Random.Range(-0.1f, 0.1f)) + direction) * this.force);
+                                Random.Range(-0.1f, 0.1f)) + direction));
         }
     }
 }
