@@ -1,10 +1,9 @@
 using UnityEngine;
-
 public class Repeler_Spt : MonoBehaviour {
     public float force = 5f;
     private Rigidbody rb;
 
-    private void Start() {
+    private void Awake() {
         this.rb = GetComponent<Rigidbody>();
     }
     private void OnTriggerStay(Collider collider) {

@@ -1,9 +1,8 @@
 using UnityEngine;
-
 public class Cursor_Spt : MonoBehaviour {
     private GameObject selectedItem;
     private Vector3 cursorPoint;
-    void Update() {
+    private void Update() {
         if (Input.GetMouseButtonDown(0)) {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
