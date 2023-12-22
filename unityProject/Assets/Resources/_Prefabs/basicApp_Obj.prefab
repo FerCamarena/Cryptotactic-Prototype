@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4469644667294298157}
   - component: {fileID: 8764416628579466931}
   - component: {fileID: 7382502229807133842}
+  - component: {fileID: 8169042695523198914}
   m_Layer: 7
   m_Name: basicApp_Obj
   m_TagString: Item
@@ -65,7 +66,6 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 7dcec01d42261154390473360cf3179d, type: 2}
-  - {fileID: 2100000, guid: ebf947debd122dd42857f5f6752950c2, type: 2}
   - {fileID: 2100000, guid: 511e6ae64b1eb074a9ee92b37f68da0e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -149,3 +149,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basicMail: {fileID: 3761458567120331651, guid: 14568b07b0deddc4f8d4f7ed269a8470, type: 3}
+--- !u!114 &8169042695523198914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1538222443249297217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35cca028e9593784eb620b6e88c5b088, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selected: 0
+  outlineMaterial: {fileID: 2100000, guid: ebf947debd122dd42857f5f6752950c2, type: 2}

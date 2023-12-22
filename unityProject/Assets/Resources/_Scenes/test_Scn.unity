@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78f99a49edc1a464babcfece05b01b0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hoverMaterial: {fileID: 2100000, guid: a53c3b1d5d22fcf499c2d8e1a07dfb01, type: 2}
 --- !u!114 &74505371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -581,10 +582,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2073244307933900639, guid: 14568b07b0deddc4f8d4f7ed269a8470, type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: a53c3b1d5d22fcf499c2d8e1a07dfb01, type: 2}
     - target: {fileID: 3761458567120331651, guid: 14568b07b0deddc4f8d4f7ed269a8470, type: 3}
       propertyPath: m_Name
       value: basicItem_Obj
