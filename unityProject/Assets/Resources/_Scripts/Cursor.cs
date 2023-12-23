@@ -12,17 +12,21 @@ public class Cursor : MonoBehaviour {
                 this.selectedItem = hit.collider.gameObject;
                 this.cursorOffset = this.selectedItem.transform.position - hit.point;
                 if(this.selectedItem.TryGetComponent<Item>(out this.selection)) {
-                    this.selection.hovered = false;
+                    this.selection.onHover = false;
                 }
             } else if (!Input.GetMouseButton(0)) {
                 if (hit.collider.gameObject.CompareTag("Item") && hit.collider.TryGetComponent<Item>(out this.selection)){
-                    this.selection.hovered = true;
+                    this.selection.onHover = true;
                 }
             }
+        } else {
+            this.selection = null;
         }
         if(Input.GetMouseButton(0) && this.selectedItem) {
-            this.selection.dragged = true;
-            this.selection.hovered = false;
+            if (this.selection) {
+                this.selection.onDrag = true;
+                this.selection.onHover = false;
+            }
             Vector3 mousePosition = Input.mousePosition;
             mousePosition.x = Mathf.Clamp(mousePosition.x, 0f, Screen.width);
             mousePosition.y = Mathf.Clamp(mousePosition.y, 0f, Screen.height);
@@ -35,9 +39,12 @@ public class Cursor : MonoBehaviour {
         if(Input.GetMouseButtonUp(0)) {
             this.selectedItem = null;
             if (this.selection) {
-                this.selection.hovered = false;
-                this.selection.dragged = false;
+                this.selection.onDrag = false;
+                this.selection.onHover = false;
             }
+        }
+        if (Input.GetKeyDown(KeyCode.S) && this.selection) {
+            this.selection.onSelect ^= true;
         }
     }
 }

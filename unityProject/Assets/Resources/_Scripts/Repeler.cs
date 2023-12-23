@@ -7,7 +7,7 @@ public class Repeler : MonoBehaviour {
         this.rb = GetComponent<Rigidbody>();
     }
     private void OnTriggerStay(Collider collider) {
-        if (!collider.CompareTag("Untagged")) {
+        if (collider.gameObject.layer == this.gameObject.layer) {
             Vector3 direction = this.transform.position - collider.transform.position;
             float currentDistance = direction.magnitude;
             this.rb.velocity += (this.force / (Random.Range(-0.5f, 0.5f) + currentDistance * currentDistance) *

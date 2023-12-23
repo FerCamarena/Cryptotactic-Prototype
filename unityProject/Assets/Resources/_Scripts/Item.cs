@@ -1,37 +1,30 @@
 using UnityEngine;
-
 public class Item : MonoBehaviour {
-    public bool selected;
-    public bool dragged;
-    public bool hovered;
-    public GameObject selection;
-    public GameObject drag;
-    public GameObject hover;
-    private void Start() {
+    public bool onSelect;
+    public bool onDrag;
+    public bool onHover;
+    public GameObject selectOutline;
+    public GameObject dragOutline;
+    public GameObject hoverOutline;
+    private void FixedUpdate() {
+        OutlineUpdate();
     }
-    private void Update() {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if(Physics.Raycast(ray, out hit) && hit.collider.gameObject == this.gameObject) {
-            if(Input.GetKeyDown(KeyCode.F)) {
-                selected ^= true;
-            }
-        }
-        if(selected) { 
-            selection.SetActive(true);
+    private void OutlineUpdate() {
+        if(this.onSelect) {
+            this.selectOutline.SetActive(true);
         } else {
-            selection.SetActive(false);
+            this.selectOutline.SetActive(false);
         }
-        if(dragged) {
-            drag.SetActive(true);
+        if(this.onDrag) {
+            this.dragOutline.SetActive(true);
         } else {
-            drag.SetActive(false);
+            this.dragOutline.SetActive(false);
         }
-        if(hovered) {
-            hover.SetActive(true);
+        if(this.onHover) {
+            this.hoverOutline.SetActive(true);
         } else {
-            hover.SetActive(false);
+            this.hoverOutline.SetActive(false);
         }
-        hovered = false;
+        this.onHover = false;
     }
 }
