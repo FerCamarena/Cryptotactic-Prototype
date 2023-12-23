@@ -136,7 +136,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1.1, z: 1}
+  m_Size: {x: 1, y: 1.25, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7382502229807133842
 MonoBehaviour:
@@ -164,6 +164,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected: 0
+  dragged: 0
+  hovered: 0
+  selection: {fileID: 5797968941529132083}
+  drag: {fileID: 5509289981241445387}
+  hover: {fileID: 8536522614375309948}
 --- !u!1 &5509289981241445387
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,7 +230,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 598ea0b935f2f6d4ea1e53ab2d8c8bf3, type: 2}
+  - {fileID: 2100000, guid: dd194bede95719a4d9a16a81bf90a226, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -308,7 +313,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 598ea0b935f2f6d4ea1e53ab2d8c8bf3, type: 2}
+  - {fileID: 2100000, guid: 59561288deab1f34fb775e57129db382, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

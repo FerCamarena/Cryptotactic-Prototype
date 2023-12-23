@@ -269,6 +269,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected: 0
+  dragged: 0
+  hovered: 0
+  selection: {fileID: 4619721446911742300}
+  drag: {fileID: 7173309408246837274}
+  hover: {fileID: 2159592921186282667}
 --- !u!1 &4619721446911742300
 GameObject:
   m_ObjectHideFlags: 0
