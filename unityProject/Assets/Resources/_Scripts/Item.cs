@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class Item : MonoBehaviour {
     public bool canStack = true;
-    public int deck;
+    public int deck = 0;
     public bool onSelect;
     public bool onDrag;
     public bool onHover;
@@ -11,28 +11,36 @@ public class Item : MonoBehaviour {
     public GameObject hoverOutline;
     public float force = 5f;
     protected Rigidbody rb;
+    public GameObject parent;
+    public List<GameObject> derivates;
 
     private void Awake() {
         this.rb = GetComponent<Rigidbody>();
-        this.deck = this.gameObject.GetInstanceID();
     }
     private void FixedUpdate() {
         OutlineUpdate();
-        // Iterate through all children and filter by the "Object" tag
-        int place = 0;
-        if (!this.transform.parent) {
+    }
+    private void Update() {
+        if (!this.parent) {
             this.deck = this.GetInstanceID();
         }
-        for (int i = 0; i < transform.childCount; i++) {
-            Transform child = transform.GetChild(i);
-            if (child.gameObject.layer== 6) {
-                if(child.GetComponent<Item>().deck != this.deck) { 
-                    child.parent = null;
-                } else if (!child.GetComponent<Item>().onDrag) { 
-                    place++;
-                    child.transform.position = Vector3.Lerp(child.transform.position, this.transform.position + Vector3.back * (place + 1) + Vector3.up * 0.005f * (place), 0.25f);
-                    child.GetComponent<Rigidbody>().useGravity = false;
-                    child.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        for (int i = 0; i < derivates.Count; i++) {
+            Item childItem = derivates[i].GetComponent<Item>();
+            if (childItem.gameObject.layer == 6) {
+                if(childItem.deck != this.deck) {
+                    this.derivates.RemoveAt(i);
+                    childItem.parent = null;
+                } else if (!childItem.onDrag) {
+                    Vector3 cardOffset = Vector3.back + Vector3.up * 0.01f;
+                    float animSpeed = 120 * Time.deltaTime;
+                    if (i - 1 == -1) {
+                        childItem.transform.position = Vector3.Lerp(childItem.transform.position, this.transform.position + (cardOffset * 2), animSpeed);
+                    }
+                    else {
+                        childItem.transform.position = Vector3.Lerp(childItem.transform.position, derivates[i - 1].transform.position + cardOffset, animSpeed);
+                    }
+                    childItem.GetComponent<Rigidbody>().useGravity = false;
+                    childItem.GetComponent<Rigidbody>().velocity = Vector3.zero;
                 }
             }
         }
@@ -67,11 +75,15 @@ public class Item : MonoBehaviour {
     }
     private void OnTriggerEnter(Collider collider) {
         if (this.gameObject.layer == 7) {
-            if(collider.gameObject.layer == 6 && this.canStack && !this.onDrag) { 
-                collider.GetComponent<Item>().deck = this.deck;
-                collider.transform.parent = this.transform;
+            if(this.canStack && collider.TryGetComponent<Item>(out Item item)) {
+                if(item.deck == item.GetInstanceID()){
+                    item.deck = this.deck;
+                    if(item.parent != this.gameObject) { 
+                        item.parent = this.gameObject;
+                        derivates.Add(item.gameObject);
+                    }
+                }
             }
         }
-        
     }
 }

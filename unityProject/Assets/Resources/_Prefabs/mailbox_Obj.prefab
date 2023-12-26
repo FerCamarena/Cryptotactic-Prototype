@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 5, y: 0.025, z: 5}
+  m_LocalScale: {x: 5, y: 0.01, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8654320601730140598}
@@ -181,6 +181,8 @@ MonoBehaviour:
   dragOutline: {fileID: 5509289981241445387}
   hoverOutline: {fileID: 8536522614375309948}
   force: 1
+  parent: {fileID: 0}
+  derivates: []
   basicMail: {fileID: 3761458567120331651, guid: 14568b07b0deddc4f8d4f7ed269a8470, type: 3}
   left: 10
   mailCount: {fileID: 8190275688025581090}

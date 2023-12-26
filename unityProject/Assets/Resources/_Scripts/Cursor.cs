@@ -20,6 +20,9 @@ public class Cursor : MonoBehaviour {
             } else if (!Input.GetMouseButton(0)) {
                 if (hit.collider.gameObject.CompareTag("Item") && hit.collider.TryGetComponent<Item>(out this.selection)){
                     this.selection.onHover = true;
+                    if (Input.GetKeyDown(KeyCode.S)){
+                        this.selection.onSelect = !this.selection.onSelect;
+                    }
                 }
             }
         } else {
@@ -36,7 +39,7 @@ public class Cursor : MonoBehaviour {
             mousePosition.y = Mathf.Clamp(mousePosition.y, 0f, Screen.height);
             mousePosition.z = Camera.main.transform.position.y * 0.99f;
             this.cursorPoint = Camera.main.ScreenToWorldPoint(mousePosition);
-            this.selectedItem.transform.position = Vector3.Lerp(this.selectedItem.transform.position, this.cursorPoint + this.cursorOffset, 0.25f) ;
+            this.selectedItem.transform.position = Vector3.Lerp(this.selectedItem.transform.position, this.cursorPoint + this.cursorOffset, 100 * Time.deltaTime) ;
             //Vector3 cursorDirection = (this.cursorPoint - selectedItem.transform.position).normalized;
             //selectedItem.transform.zposition = Quaternion.LookRotation(cursorDirection);
         }
@@ -52,9 +55,6 @@ public class Cursor : MonoBehaviour {
                 this.selectedItem.GetComponent<Rigidbody>().useGravity = true;
             }
             this.selectedItem = null;
-        }
-        if (Input.GetKeyDown(KeyCode.S) && this.selection) {
-            this.selection.onSelect ^= true;
         }
     }
 }
