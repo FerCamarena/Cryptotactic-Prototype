@@ -97,7 +97,6 @@ GameObject:
   - component: {fileID: 8776736393626902535}
   - component: {fileID: 7932271030202524220}
   - component: {fileID: 10431897273941717}
-  - component: {fileID: 328202082775383831}
   - component: {fileID: 1619278584163900064}
   m_Layer: 6
   m_Name: mail_Obj
@@ -116,7 +115,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 5, y: 0.1, z: 5}
+  m_LocalScale: {x: 5, y: 0.025, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7210086171590002100}
@@ -243,19 +242,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &328202082775383831
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3761458567120331651}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba0c94f6048765c438e42de3c8392428, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  force: 1
 --- !u!114 &1619278584163900064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,13 +254,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dca1a7ee62102c64da8e6f78f2da9be3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canStack: 1
+  deck: 0
   onSelect: 0
   onDrag: 0
   onHover: 0
-  pointedObject: {fileID: 0}
   selectOutline: {fileID: 4619721446911742300}
   dragOutline: {fileID: 7173309408246837274}
   hoverOutline: {fileID: 2159592921186282667}
+  force: 1
   solved: 0
 --- !u!1 &4619721446911742300
 GameObject:
