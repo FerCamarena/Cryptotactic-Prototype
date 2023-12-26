@@ -605,7 +605,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1538222443249297217, guid: 1f81916a322bffa4d80956017aa28cf3, type: 3}
       propertyPath: m_Name
-      value: drawer_Obj (1)
+      value: drawer_Obj 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

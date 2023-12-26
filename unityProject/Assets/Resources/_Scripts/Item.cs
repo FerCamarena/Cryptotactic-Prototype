@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 public class Item : MonoBehaviour {
     public bool canStack = true;
@@ -12,10 +13,14 @@ public class Item : MonoBehaviour {
     public float force = 5f;
     protected Rigidbody rb;
     public GameObject parent;
-    public List<GameObject> derivates;
+    public List<Item> derivates;
 
     private void Awake() {
         this.rb = GetComponent<Rigidbody>();
+        Invoke("Initialize", 0.1f);
+    }
+    public void Initialize() { 
+        this.deck = this.GetInstanceID();
     }
     private void FixedUpdate() {
         OutlineUpdate();
@@ -24,12 +29,17 @@ public class Item : MonoBehaviour {
         if (!this.parent) {
             this.deck = this.GetInstanceID();
         }
-        for (int i = 0; i < derivates.Count; i++) {
-            Item childItem = derivates[i].GetComponent<Item>();
+        for (int i = 0; i < this.derivates.Count; i++) {
+            Item childItem = this.derivates[i];
             if (childItem.gameObject.layer == 6) {
                 if(childItem.deck != this.deck) {
-                    this.derivates.RemoveAt(i);
-                    childItem.parent = null;
+                    for(int j = this.derivates.Count; j > i; j--) {
+                        this.derivates[j - 1].Initialize();
+                        this.derivates[j - 1].parent = null;
+                        this.derivates[j - 1].GetComponent<Rigidbody>().useGravity = true;
+                        this.derivates.RemoveAt(j - 1);
+                    }
+                    break;
                 } else if (!childItem.onDrag) {
                     Vector3 cardOffset = Vector3.back + Vector3.up * 0.01f;
                     float animSpeed = 120 * Time.deltaTime;
@@ -75,12 +85,12 @@ public class Item : MonoBehaviour {
     }
     private void OnTriggerEnter(Collider collider) {
         if (this.gameObject.layer == 7) {
-            if(this.canStack && collider.TryGetComponent<Item>(out Item item)) {
+            if(collider.gameObject.layer == 6 && this.canStack && collider.TryGetComponent<Item>(out Item item)) {
                 if(item.deck == item.GetInstanceID()){
                     item.deck = this.deck;
                     if(item.parent != this.gameObject) { 
                         item.parent = this.gameObject;
-                        derivates.Add(item.gameObject);
+                        derivates.Add(item);
                     }
                 }
             }
