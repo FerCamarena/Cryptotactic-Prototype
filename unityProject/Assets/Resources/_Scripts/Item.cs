@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-public class Item : MonoBehaviour {
+public abstract class Item : MonoBehaviour {
     public bool canStack = true;
-    public int deck = 0;
+    public int deckID = 0;
     public bool onSelect;
     public bool onDrag;
     public bool onHover;
@@ -12,46 +12,43 @@ public class Item : MonoBehaviour {
     public GameObject hoverOutline;
     public float force = 5f;
     protected Rigidbody rb;
-    public GameObject parent;
-    public List<Item> derivates;
+    public Item parent;
+    public List<Item> deckStack;
+    public int process = 1000;
 
     private void Awake() {
         this.rb = GetComponent<Rigidbody>();
-        Invoke("Initialize", 0.1f);
-    }
-    public void Initialize() { 
-        this.deck = this.GetInstanceID();
     }
     private void FixedUpdate() {
-        OutlineUpdate();
+        this.OutlineUpdate();
+        this.CooldownUpdate();
     }
     private void Update() {
+        this.SolveItem();
         if (!this.parent) {
-            this.deck = this.GetInstanceID();
+            this.deckID = this.GetInstanceID();
         }
-        for (int i = 0; i < this.derivates.Count; i++) {
-            Item childItem = this.derivates[i];
-            if (childItem.gameObject.layer == 6) {
-                if(childItem.deck != this.deck) {
-                    for(int j = this.derivates.Count; j > i; j--) {
-                        this.derivates[j - 1].Initialize();
-                        this.derivates[j - 1].parent = null;
-                        this.derivates[j - 1].GetComponent<Rigidbody>().useGravity = true;
-                        this.derivates.RemoveAt(j - 1);
-                    }
-                    break;
-                } else if (!childItem.onDrag) {
-                    Vector3 cardOffset = Vector3.back + Vector3.up * 0.01f;
-                    float animSpeed = 120 * Time.deltaTime;
-                    if (i - 1 == -1) {
-                        childItem.transform.position = Vector3.Lerp(childItem.transform.position, this.transform.position + (cardOffset * 2), animSpeed);
-                    }
-                    else {
-                        childItem.transform.position = Vector3.Lerp(childItem.transform.position, derivates[i - 1].transform.position + cardOffset, animSpeed);
-                    }
-                    childItem.GetComponent<Rigidbody>().useGravity = false;
-                    childItem.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        foreach (var childItem in this.deckStack) {
+            int i = this.deckStack.IndexOf(childItem);
+            if(childItem.deckID != this.deckID) {
+                for (int j = this.deckStack.Count - 1; j > i - 1; j--) {
+                    if (childItem != this.deckStack[j]) childItem.AddOnStack(this.deckStack[j]);
+                    this.deckStack.RemoveAt(j);
                 }
+                childItem.parent = null;
+                break;
+            } else if (!childItem.onDrag) {
+                childItem.parent = this;
+                Vector3 displayOffset = Vector3.back + Vector3.up * 0.01f;
+                float animSpeed = 120 * Time.deltaTime;
+                if (i - 1 == -1) {
+                    childItem.transform.position = Vector3.Lerp(childItem.transform.position, this.transform.position + (displayOffset * 2), animSpeed);
+                }
+                else {
+                    childItem.transform.position = Vector3.Lerp(childItem.transform.position, deckStack[i - 1].transform.position + displayOffset, animSpeed);
+                }
+                childItem.GetComponent<Rigidbody>().useGravity = false;
+                childItem.GetComponent<Rigidbody>().velocity = Vector3.zero;
             }
         }
     }
@@ -75,7 +72,7 @@ public class Item : MonoBehaviour {
     }
     
     private void OnTriggerStay(Collider collider) {
-        if (collider.TryGetComponent<Item>(out Item colliderItem) && this.deck != colliderItem.deck) {
+        if (collider.TryGetComponent<Item>(out Item colliderItem) && this.deckID != colliderItem.deckID) {
             Vector3 direction = this.transform.position - collider.transform.position;
             float currentDistance = direction.magnitude;
             this.rb.velocity += (this.force / (Random.Range(-0.5f, 0.5f) + currentDistance * currentDistance) *
@@ -83,14 +80,47 @@ public class Item : MonoBehaviour {
                                 Random.Range(-0.1f, 0.1f)) + direction));
         }
     }
+    public bool CheckIfOnStack(Item item){
+        foreach (var itemStacked in this.deckStack){
+            if(itemStacked == item){
+                return true;
+            }
+        }
+        return false;
+    }
+    public Item LookForParent() {
+        if (this.parent) {
+            return this.parent.GetComponent<Item>().LookForParent();
+        }
+        return this;
+    }
+    public abstract void SolveItem();
+    public void CooldownUpdate() {
+        if (this.process > 0) {
+            this.process--;
+        }
+    }
+    public void AddOnStack(Item item){
+        if (!CheckIfOnStack(item)) {
+            item.deckID = this.deckID;
+            item.parent = this;
+            this.deckStack.Add(item);
+            if(item.deckStack.Count > 0) {
+                foreach (var stackedItem in item.deckStack) {
+                    this.AddOnStack(stackedItem);
+                }
+                item.deckStack.Clear();
+            }
+        }
+    }
     private void OnTriggerEnter(Collider collider) {
-        if (this.gameObject.layer == 7) {
-            if(collider.gameObject.layer == 6 && this.canStack && collider.TryGetComponent<Item>(out Item item)) {
-                if(item.deck == item.GetInstanceID()){
-                    item.deck = this.deck;
-                    if(item.parent != this.gameObject) { 
-                        item.parent = this.gameObject;
-                        derivates.Add(item);
+        if(collider.gameObject.layer == 6 && collider.TryGetComponent<Item>(out Item item) && this.canStack) {
+            if(item.deckID == item.GetInstanceID()) { 
+                if (this.gameObject.layer == 7) {
+                    this.AddOnStack(item);
+                } else if(this.gameObject.layer == 6) {
+                    if(!item.canStack || item.transform.position.z < this.transform.position.z) {
+                        this.LookForParent().AddOnStack(item);
                     }
                 }
             }

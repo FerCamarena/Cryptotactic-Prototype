@@ -1,29 +1,19 @@
 using UnityEngine;
 public class Drawer : Item {
-    public uint process;
-    private void OnTriggerStay(Collider collider) {
-        if (collider.gameObject.layer == this.gameObject.layer) {
-            Vector3 direction = this.transform.position - collider.transform.position;
-            float currentDistance = direction.magnitude;
-            this.rb.velocity += (this.force / (Random.Range(-0.5f, 0.5f) + currentDistance * currentDistance) *
-                                ((Vector3.forward * Random.Range(-0.1f, 0.1f) + Vector3.right *
-                                Random.Range(-0.1f, 0.1f)) + direction));
-        } else if (collider.gameObject.layer == 6) {
-            /*
-            if (this.process == 0) {
-                if (collider.TryGetComponent<Mail>(out Mail mail)) {
-                    if(mail.solved) {
-                        Debug.Log("Solved");
-                    } else {
-                        Debug.Log("Unsolved");
-                    }
-                    Destroy(collider.gameObject, 0.1f);
-                    this.process = 200;
+    public override void SolveItem() {
+        if (this.process <= 0 && this.deckStack.Count > 0) {
+            if (this.deckStack[0].TryGetComponent<Mail>(out Mail mail)) {
+                if(mail.solved) {
+                    Debug.Log("Solved");
+                } else {
+                    Debug.Log("Unsolved");
                 }
-            } else {
-                this.process--;
+                this.deckStack.RemoveAt(0);
+                Destroy(mail.gameObject);;
+                this.process = 1000;
             }
-            */
+        } else if(this.process > 0 && this.deckStack.Count > 0) {
+            this.process--;
         }
     }
 }

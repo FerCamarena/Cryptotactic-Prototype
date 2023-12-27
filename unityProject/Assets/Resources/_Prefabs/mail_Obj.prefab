@@ -219,8 +219,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1.25, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 10, z: 1}
+  m_Center: {x: 0, y: 2.5, z: 0}
 --- !u!65 &10431897273941717
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -255,7 +255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canStack: 1
-  deck: 0
+  deckID: 0
   onSelect: 0
   onDrag: 0
   onHover: 0
@@ -264,7 +264,8 @@ MonoBehaviour:
   hoverOutline: {fileID: 2159592921186282667}
   force: 1
   parent: {fileID: 0}
-  derivates: []
+  deckStack: []
+  process: 1000
   solved: 0
 --- !u!1 &4619721446911742300
 GameObject:
