@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 public abstract class Item : MonoBehaviour {
     public bool canStack = true;
@@ -10,21 +9,33 @@ public abstract class Item : MonoBehaviour {
     public GameObject selectOutline;
     public GameObject dragOutline;
     public GameObject hoverOutline;
-    public float force = 5f;
+    public float force = 1f;
     protected Rigidbody rb;
     public Item parent;
     public List<Item> deckStack;
     public int process = 1000;
+    public bool timeActive = true;
 
     private void Awake() {
         this.rb = GetComponent<Rigidbody>();
     }
     private void FixedUpdate() {
         this.OutlineUpdate();
-        this.CooldownUpdate();
+        if(this.timeActive) {
+            this.ProcessUpdate();
+        }
+    }
+    private void OnEnable() {
+        Actions.timeUpdate += PauseProcess;
+    }
+    private void OnDisable() {
+        Actions.timeUpdate -= PauseProcess;
+    }
+    private void PauseProcess() {
+        this.timeActive ^= true;
     }
     private void Update() {
-        this.SolveItem();
+        this.ItemUpdate();
         if (!this.parent) {
             this.deckID = this.GetInstanceID();
         }
@@ -89,19 +100,19 @@ public abstract class Item : MonoBehaviour {
         return false;
     }
     public Item LookForParent() {
-        if (this.parent) {
+        if (this.parent && this.parent != this.gameObject) {
             return this.parent.GetComponent<Item>().LookForParent();
         }
         return this;
     }
-    public abstract void SolveItem();
-    public void CooldownUpdate() {
-        if (this.process > 0) {
+    public abstract void ItemUpdate();
+    public virtual void ProcessUpdate() {
+        if (this.process > 0 && this.deckStack.Count > 0 && !this.onDrag) {
             this.process--;
         }
     }
     public void AddOnStack(Item item){
-        if (!CheckIfOnStack(item)) {
+        if (!CheckIfOnStack(item) && this.parent != item) {
             item.deckID = this.deckID;
             item.parent = this;
             this.deckStack.Add(item);
