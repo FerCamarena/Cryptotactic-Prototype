@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace App.Managers {
+namespace App.Game.Managers {
     /// <summary>
     /// Main menu scene local manager. Handles UI interactions, scene behaviour, events and other menu-specific logic.
     /// </summary>

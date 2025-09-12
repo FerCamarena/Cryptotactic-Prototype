@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace App.Managers {
     /// <summary>
-    /// App static navigation singleton. Manages app navigation, screen transitions, and routing between different sections of the app. 
+    /// App lifecycle navigation static manager singleton. Manages app navigation, screen transitions, and routing between different sections of the app. 
     /// </summary>
     public class _NavManager {
     // ? DEBUG======================================================================================================================================
