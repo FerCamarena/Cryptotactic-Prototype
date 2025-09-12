@@ -7,7 +7,7 @@ namespace App.Managers {
     public class _NavManager {
     // ? DEBUG======================================================================================================================================
         [Tooltip("Enable debug logs for this script. (Default: false)")]
-        [SerializeField] private bool DEBUG = false;
+        [SerializeField] private readonly bool DEBUG = false;
         public static _NavManager Instance {
             get {
                 if (_instance == null) {

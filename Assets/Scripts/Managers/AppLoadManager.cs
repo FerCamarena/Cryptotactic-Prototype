@@ -7,7 +7,7 @@ namespace App.Managers {
     public class AppLoadManager : MonoBehaviour {
     // ? DEBUG======================================================================================================================================
         [Header("DEBUGGING"), Tooltip("Enable debug logs for this script. (Default: false)")]
-        [SerializeField] private bool DEBUG = false;
+        [SerializeField] private readonly bool DEBUG = false;
         //[Space(5)]
         
     // ? PARAMETERS=================================================================================================================================
