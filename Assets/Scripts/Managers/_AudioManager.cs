@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace App.Managers {
     /// <summary>
-    /// App static audio singleton. Manages app audio settings load, save, handling, events and other audio-related functions. 
+    /// App lifecycle audio static manager singleton. Manages app audio settings load, save, handling, events and other audio-related functions. 
     /// </summary>
     public class _AudioManager {
     // ? DEBUG======================================================================================================================================

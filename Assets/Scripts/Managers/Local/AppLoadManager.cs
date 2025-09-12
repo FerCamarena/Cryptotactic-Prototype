@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace App.Managers {
+namespace App.Game.Managers {
     /// <summary>
-    /// App lifecycle script. Manages app initialization, crash handling, exit, resume and other app-wide events. 
+    /// App loader scene local manager. Manages app initialization, crash handling, exit, resume and other app-wide events. 
     /// </summary>
     public class AppLoadManager : MonoBehaviour {
     // ? DEBUG======================================================================================================================================

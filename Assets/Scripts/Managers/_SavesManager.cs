@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace App.Managers {
     /// <summary>
-    /// App static saves singleton. Manages app savestates and settings load, save and other save-related functions.
+    /// App lifecycle saves static manager singleton. Manages app savestates and settings load, save and other save-related functions.
     /// </summary>
     public class _SavesManager {
     // ? DEBUG======================================================================================================================================
