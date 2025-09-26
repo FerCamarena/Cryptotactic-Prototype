@@ -6,8 +6,10 @@ namespace App.Game.Managers {
     /// </summary>
     public class AppLoadManager : MonoBehaviour {
     // ? DEBUG======================================================================================================================================
-        [Header("DEBUGGING"), Tooltip("Enable debug logs for this script. (Default: false)")]
-        [SerializeField] private readonly bool DEBUG = false;
+        [Header("DEBUGGING"), Tooltip("Enable debug logs for all instances of this script. (Default: false)")]
+        [SerializeField] private static readonly bool DEBUG_ALL = false;
+        [Tooltip("Enable debug logs for this script instance. (Default: false)")]
+        [SerializeField] private readonly bool DEBUG_INSTANCE = false;
         //[Space(5)]
         
     // ? PARAMETERS=================================================================================================================================
@@ -18,6 +20,24 @@ namespace App.Game.Managers {
         // * INTERNAL
 
     // ? BASE METHODS===============================================================================================================================
+        //private void Awake() {}
+
+        //private void Start() {}
+
+        //private void Update() {}
+    
+        //private void FixedUpdate() {}
+
+        //private void LateUpdate() {}
+        
+        //private void OnValidate() {}
+
+        //private void OnEnable() {}
+
+        //private void OnDisable() {}
+
+        //private void OnDestroy() {}
+
 
     // ? CUSTOM METHODS=============================================================================================================================
 
