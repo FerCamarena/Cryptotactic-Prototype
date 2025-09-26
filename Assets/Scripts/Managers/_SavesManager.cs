@@ -4,22 +4,13 @@ namespace App.Managers {
     /// <summary>
     /// App lifecycle saves static manager singleton. Manages app savestates and settings load, save and other save-related functions.
     /// </summary>
-    public class _SavesManager {
+    public static class _SavesManager {
     // ? DEBUG======================================================================================================================================
-        [Tooltip("Enable debug logs for this script. (Default: false)")]
-        [SerializeField] private readonly bool DEBUG = false;
-        public static _SavesManager Instance {
-            get {
-                if (_instance == null) {
-                    _instance = new _SavesManager();
-                }
-                return _instance;
-            }
-        }
+        [Header("DEBUGGING"), Tooltip("Enable debug logs for this script. (Default: false)")]
+        private static readonly bool DEBUG = false;
 
     // ? PARAMETERS=================================================================================================================================
         // * REFERENCES
-        private static _SavesManager _instance;
 
         // * ATTRIBUTES
 

@@ -4,22 +4,13 @@ namespace App.Managers {
     /// <summary>
     /// App lifecycle navigation static manager singleton. Manages app navigation, screen transitions, and routing between different sections of the app. 
     /// </summary>
-    public class _NavManager {
+    public static class _NavManager {
     // ? DEBUG======================================================================================================================================
-        [Tooltip("Enable debug logs for this script. (Default: false)")]
-        [SerializeField] private readonly bool DEBUG = false;
-        public static _NavManager Instance {
-            get {
-                if (_instance == null) {
-                    _instance = new _NavManager();
-                }
-                return _instance;
-            }
-        }
+        [Header("DEBUGGING"), Tooltip("Enable debug logs for this script. (Default: false)")]
+        private static readonly bool DEBUG = false;
 
     // ? PARAMETERS=================================================================================================================================
         // * REFERENCES
-        private static _NavManager _instance;
 
         // * ATTRIBUTES
 
