@@ -56,5 +56,18 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "g_malware-displease.sln"
+    "files.associations": {
+        "*.asset": "yaml",
+        "*.meta": "yaml",
+        "*.prefab": "yaml",
+        "*.unity": "yaml"
+    },
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.patterns": {
+        "*.sln": "*.csproj",
+        "*.slnx": "*.csproj"
+    },
+    "dotnet.defaultSolution": "g_malware-displease.slnx",
+    "dotnet.enableWorkspaceBasedDevelopment": false,
+    "dotnet.preferCSharpExtension": true
 }
