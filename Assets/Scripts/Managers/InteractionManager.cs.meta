@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 7a2dbe2d7cba7f446b43af93ef374d23
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - gameplayCamera: {instanceID: 0}
+  - select: {fileID: 1120369429361536294, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  - peek: {fileID: -5802441270716933669, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  - interact: {fileID: -3909137857954364645, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  - deselect: {fileID: -4664837612578728185, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  - snap: {fileID: 5458482736452048055, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
