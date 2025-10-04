@@ -4,12 +4,13 @@ namespace App.Game.Managers {
     /// <summary>
     /// App loader scene local manager. Manages app initialization, crash handling, exit, resume and other app-wide events. 
     /// </summary>
-    public class AppLoadManager : MonoBehaviour {
+    [DisallowMultipleComponent]
+    public sealed class AppLoadManager : MonoBehaviour {
     // ? DEBUG======================================================================================================================================
         [Header("DEBUGGING"), Tooltip("Enable debug logs for all instances of this script. (Default: false)")]
-        [SerializeField] private static readonly bool DEBUG_ALL = false;
+        [SerializeField] private static bool DEBUG_ALL = false;
         [Tooltip("Enable debug logs for this script instance. (Default: false)")]
-        [SerializeField] private readonly bool DEBUG_INSTANCE = false;
+        [SerializeField] private bool DEBUG_INSTANCE = false;
         //[Space(5)]
         
     // ? PARAMETERS=================================================================================================================================
