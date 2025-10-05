@@ -31,12 +31,22 @@ namespace App.Game.Mail {
         ///
         /// </summary>
         [Tooltip("")]
+        [NonSerialized] internal IMailIconProvider iconProvider; // ? Should this reference be inyected?
+        /// <summary>
+        ///
+        /// </summary>
+        [Tooltip("")]
         [NonSerialized] private Coroutine dragRoutine;
         /// <summary>
         ///
         /// </summary>
         [Tooltip("")]
         [NonSerialized] private Vector2 dragVelocity;
+        /// <summary>
+        ///
+        /// </summary>
+        [Tooltip("")]
+        [SerializeField] private TextMeshPro counterTMP;
         /// <summary>
         ///
         /// </summary>
@@ -52,6 +62,7 @@ namespace App.Game.Mail {
         /// 
         /// </summary>
         private void Start() {
+            this.counterTMP.text = this.pendingMails.Count.ToString();
         }
         
     // ? CUSTOM METHODS=============================================================================================================================
@@ -59,6 +70,14 @@ namespace App.Game.Mail {
         /// 
         /// </summary>
         /// <param name="newMail"></param>
+        internal void AddIncomingMail(GameObject newMail) {
+            this.pendingMails.Enqueue(newMail);
+
+            this.counterTMP.text = this.pendingMails.Count.ToString();
+
+            if (DEBUG)
+                Debug.Log($"[MB] Incoming mail {newMail} added to queue");
+        }
 
         void IDraggable.StopActiveDragRoutine() {
             this.StopCoroutine(this.dragRoutine);
@@ -126,9 +145,12 @@ namespace App.Game.Mail {
         void ISelectable.OnDeselect() { }
 
         void IActivatable.OnActivate() {
+            if (this.pendingMails.Count == 0 || this.iconProvider == null)
+                return;
                 
             GameObject mailIcon = this.pendingMails.Dequeue();
 
+            this.counterTMP.text = this.pendingMails.Count.ToString();
 
             mailIcon.gameObject.SetActive(true);
 
