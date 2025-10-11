@@ -15,6 +15,6 @@ namespace App.Game.Managers {
         /// <summary>
         /// 
         /// </summary>
-        GameObject GetMailIcon();
+        GameObject OnGetMailIcon();
     }
 }

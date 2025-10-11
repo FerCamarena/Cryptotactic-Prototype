@@ -53,10 +53,12 @@ namespace App.Game.Mail {
         }
 
     // ? CUSTOM METHODS=============================================================================================================================
+    
+    // ? EVENT METHODS==============================================================================================================================
         /// <summary>
         /// 
         /// </summary>
-        public MailData GenerateMailData() {
+        public MailData OnGenerateMailData() {
             if (this.greetings == null || this.summaries == null || this.authors == null)
                 return default;
 
@@ -79,7 +81,6 @@ namespace App.Game.Mail {
 
             return data;
         }
-    // ? EVENT METHODS==============================================================================================================================
 
     }
 }

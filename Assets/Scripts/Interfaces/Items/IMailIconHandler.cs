@@ -8,7 +8,7 @@ namespace App.Game.Mail {
         /// 
         /// </summary>
         /// <param name="icon"></param>
-        void OnMailReleased(MailIcon icon);
+        void OnMailIconReleased(MailIcon icon);
         /// <summary>
         /// 
         /// </summary>
