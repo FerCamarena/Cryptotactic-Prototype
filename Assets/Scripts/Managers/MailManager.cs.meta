@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: dd38c4bfb9da52e4c9a4fdd284f0600c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - mailViewPrefab: {fileID: 3127468989658128185, guid: 4f93ffdb71bf46d4cb3527a2993e1c58, type: 3}
+  - mailIconPrefab: {fileID: 202084800404100304, guid: 56d6359c7b4a03b498b0c66ea600b070, type: 3}
+  - mailViewParent: {instanceID: 0}
+  - mailIconParent: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
