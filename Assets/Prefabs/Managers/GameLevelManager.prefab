@@ -10,12 +10,15 @@ GameObject:
   m_Component:
   - component: {fileID: 2268138599090750879}
   - component: {fileID: 5651935561166107186}
+  - component: {fileID: 2856842806573837555}
+  - component: {fileID: 3914713261007783801}
+  - component: {fileID: 5401256131156516805}
   m_Layer: 2
   m_Name: GameLevelManager
   m_TagString: Manager
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2268138599090750879
 Transform:
@@ -44,3 +47,91 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5271f9127419fa4fb3797beaf1fde1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DEBUG_INSTANCE: 0
+--- !u!114 &2856842806573837555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 46241200496571150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a2dbe2d7cba7f446b43af93ef374d23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DEBUG: 0
+  select: {fileID: 7736206128080814417, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  deselect: {fileID: -3003075443243949018, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  peek: {fileID: -1430539582656975909, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  interact: {fileID: -4486990787538200898, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  snap: {fileID: 6080515349948950092, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  gameplayCamera: {fileID: 0}
+  pointer: {fileID: 0}
+  hoverer: {fileID: 0}
+  selector: {fileID: 0}
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  dragOffset: {x: 0, y: 0}
+  dragThreshold: 2
+  dragSmooth: 0.08
+  centerItemOnDrag: 0
+  gridSize: 1
+--- !u!114 &3914713261007783801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 46241200496571150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd38c4bfb9da52e4c9a4fdd284f0600c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DEBUG: 0
+  mailViewPrefab: {fileID: 1791924109669136278, guid: 4f93ffdb71bf46d4cb3527a2993e1c58, type: 3}
+  mailIconPrefab: {fileID: 2606620136194994288, guid: 56d6359c7b4a03b498b0c66ea600b070, type: 3}
+  mailViewParent: {fileID: 0}
+  mailIconParent: {fileID: 0}
+  generator:
+    DEBUG: 0
+    greetings:
+    - A
+    summaries:
+    - B
+    authors:
+    - C
+  spawnInterval: 5
+  mailBox: {fileID: 0}
+--- !u!114 &5401256131156516805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 46241200496571150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_NotificationBehavior: 3
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Gameplay
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
